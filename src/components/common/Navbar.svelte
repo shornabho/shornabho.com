@@ -1,9 +1,12 @@
-<script>
-	let isNavOpen = false;
+<script lang="ts">
+	import { navigating } from '$app/stores';
+	let loading: boolean;
+
+	$: loading = !!$navigating;
 </script>
 
 <!-- Navbar -->
-<div class="navbar-wrapper {isNavOpen ? 'open' : ''}">
+<div class="navbar-wrapper {loading ? 'loading' : ''}">
 	<div class="container m-auto">
 		<div class="navbar">
 			<a class="nav-brand" href="/">
@@ -56,6 +59,11 @@
 		height: 3rem;
 		width: 100%;
 		display: flex;
+	}
+
+	.navbar-wrapper.loading {
+		box-shadow: 0 0px 20px 0px var(--color-primary);
+		transition: box-shadow 0.5s ease;
 	}
 
 	.navbar {

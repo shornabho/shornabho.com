@@ -1,10 +1,23 @@
+<script context="module" lang="ts">
+	/** @type {import('@sveltejs/kit').Load} */
+	export async function load({ params, fetch, session, stuff }) {
+		const blogposts: Blogpost[] = await getAllBlogposts();
+
+		return {
+			props: {
+				blogposts
+			}
+		};
+	}
+</script>
+
 <script lang="ts">
 	import BlogCard from '../../components/Blog/BlogCard.svelte';
 	import PageHeader from '../../components/common/PageHeader.svelte';
+	import type { Blogpost } from '../../models/Blogpost';
+	import { getAllBlogposts } from '../../stores/blogposts';
 
-	import { Blogposts, loadAllBlogposts } from '../../stores/blogposts';
-
-	loadAllBlogposts();
+	export let blogposts: Blogpost[];
 </script>
 
 <svelte:head>
@@ -15,7 +28,7 @@
 
 <div class="container page-body-container">
 	<div class="blogs-container">
-		{#each $Blogposts as blogpost}
+		{#each blogposts as blogpost}
 			<BlogCard {blogpost} />
 		{/each}
 	</div>

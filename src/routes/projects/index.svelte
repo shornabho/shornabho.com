@@ -1,10 +1,23 @@
+<script context="module" lang="ts">
+	/** @type {import('@sveltejs/kit').Load} */
+	export async function load({ params, fetch, session, stuff }) {
+		const projects: Project[] = await getAllProjects();
+
+		return {
+			props: {
+				projects
+			}
+		};
+	}
+</script>
+
 <script lang="ts">
 	import ProjectCard from '../../components/Projects/ProjectCard.svelte';
 	import PageHeader from '../../components/common/PageHeader.svelte';
+	import type { Project } from '../../models/Project';
+	import { getAllProjects } from '../../stores/projects';
 
-	import { Projects, loadAllProjects } from '../../stores/projects';
-
-	loadAllProjects();
+	export let projects: Project[];
 </script>
 
 <svelte:head>
@@ -18,7 +31,7 @@
 
 <div class="container page-body-container">
 	<div class="projects-container">
-		{#each $Projects as project}
+		{#each projects as project}
 			<ProjectCard {project} />
 		{/each}
 	</div>

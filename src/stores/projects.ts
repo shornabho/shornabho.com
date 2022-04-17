@@ -3,13 +3,13 @@ import { get, writable, type Writable } from 'svelte/store';
 import { db } from '../db';
 import type { Project } from '../models/Project';
 
-export const Projects: Writable<Project[]> = writable([]);
-
-export const loadAllProjects = async () => {
+export const getAllProjects = async (): Promise<Project[]> => {
 	let { data: projects, error } = await db
 		.from('projects')
 		.select('id,title,subtitle,shortDescription,tags,role,webUrl,gitUrl,docsUrl,slug')
 		.order('started_at', { ascending: false });
+
+	if (error) throw error;
 
 	if (projects) {
 		projects = projects.map((project) => {
@@ -28,18 +28,13 @@ export const loadAllProjects = async () => {
 			return project;
 		});
 	}
-	Projects.set(projects);
+
+	return projects;
 };
 
-export const loadProject = async (slug: string) => {
-	let { data, error } = await db.from('projects').select('fullContent').filter('slug', 'eq', slug);
+export const getProject = async (slug: string): Promise<Project> => {
+	let { data: projects, error } = await db.from('projects').select('*').filter('slug', 'eq', slug);
 
-	Projects.update((projects: Project[]) => {
-		return projects.map((project: Project) => {
-			if (project.slug == slug) project.fullContent = data.at(0)?.fullContent;
-			return project;
-		});
-	});
+	if (error) throw error;
+	else return projects.at(0);
 };
-
-loadAllProjects();

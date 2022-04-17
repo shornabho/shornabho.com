@@ -3,26 +3,26 @@ import { writable, type Writable } from 'svelte/store';
 import type { Blogpost } from '../models/Blogpost';
 import { db } from '../db';
 
-export const Blogposts: Writable<Blogpost[]> = writable([]);
-
-export const loadAllBlogposts = async () => {
+export const getAllBlogposts = async (): Promise<Blogpost[]> => {
 	let { data: blogposts, error } = await db
 		.from('blogposts')
-		.select('id,title,shortDescription,tags,slug,author,coverImageUrl,fullContent')
+		.select('*')
 		.order('createdAt', { ascending: false });
 
-	Blogposts.set(blogposts);
-};
-
-export const loadBlogpost = async (slug: string) => {
-	let { data, error } = await db.from('blogposts').select('fullContent').filter('slug', 'eq', slug);
-
-	Blogposts.update((blogposts: Blogpost[]) => {
-		return blogposts.map((blogpost: Blogpost) => {
-			if (blogpost.slug == slug) blogpost.fullContent = data.at(0)?.fullContent;
-			return blogpost;
-		});
+	blogposts = blogposts.map((blogpost) => {
+		return {
+			...blogpost,
+			createdAt: new Date(blogpost.createdAt)
+		};
 	});
+
+	if (error) throw error;
+	else return blogposts;
 };
 
-loadAllBlogposts();
+export const getBlogpost = async (slug: string): Promise<Blogpost> => {
+	let { data: blogpost, error } = await db.from('blogposts').select('*').filter('slug', 'eq', slug);
+
+	if (error) throw error;
+	else return { ...blogpost.at(0), createdAt: new Date(blogpost.at(0).createdAt) };
+};
