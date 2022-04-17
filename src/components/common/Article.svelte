@@ -7,6 +7,9 @@
 
 	import Heading from '../../markdown/renderers/Heading.svelte';
 	import List from '../../markdown/renderers/List.svelte';
+	import Code from '../../markdown/renderers/Code.svelte';
+	import Paragraph from '../../markdown/renderers/Paragraph.svelte';
+
 	import { readingTime } from '../../utils';
 
 	export let project: Project = null;
@@ -61,7 +64,9 @@ mkdir swarnava
 
 	const renderers = {
 		heading: Heading,
-		list: List
+		list: List,
+		code: Code,
+		paragraph: Paragraph
 	};
 
 	let breadcrumbs: string[] = $page.url.pathname.slice(1).split('/');
@@ -69,6 +74,10 @@ mkdir swarnava
 
 <svelte:head>
 	<title>{(project && project.title) || (blogpost && blogpost.title)} - shornabho.com</title>
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css"
+	/>
 </svelte:head>
 
 <div class="container page-body-container">
@@ -106,13 +115,12 @@ mkdir swarnava
 					{#if project.urls?.web}
 						<a class="project-url" href={project.urls?.web}>
 							{project.urls?.web && new URL(project.urls?.web).hostname}
-						</a>
+						</a> •
 					{:else if project.urls?.git}
 						<a class="project-url" href={project.urls?.git}>
 							{project.urls?.git && new URL(project.urls?.git).hostname}
-						</a>
+						</a> •
 					{/if}
-					•
 				{:else if blogpost && blogpost.createdAt}
 					{new Intl.DateTimeFormat('en-US', {
 						month: 'long',

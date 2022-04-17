@@ -1,5 +1,7 @@
-<script>
-	export let text;
-</script>
+<p><slot /></p>
 
-<p>{text}</p>
+<style>
+	p {
+		font-size: 0.875rem;
+	}
+</style>

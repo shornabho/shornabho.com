@@ -34,7 +34,7 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^1.34.0",
-		"highlight.js": "^11.5.0",
+		"highlight.js": "^11.5.1",
 		"svelte-markdown": "^0.2.2"
 	}
 }
