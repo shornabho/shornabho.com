@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+
 	import Navbar from '../components/common/Navbar.svelte';
 	import Footer from '../components/common/Footer.svelte';
 </script>
@@ -10,7 +12,25 @@
 		href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap"
 		rel="stylesheet"
 	/>
+	<link rel="icon" type="image/x-icon" href={`${$page.url.origin}/favicon.ico`} />
 	<title>shornabho.com</title>
+
+	<!-- Meta Tags -->
+	<meta property="og:title" content="shornabho.com" />
+	<meta property="og:site_name" content="shornabho.com" />
+	<meta property="og:description" content="Your friendly neighbourhood developer" />
+	<meta property="og:image" itemprop="image" content={`${$page.url.origin}/favicon.png`} />
+	<meta
+		property="og:image:secure_url"
+		itemprop="image"
+		content={`${$page.url.origin}/favicon.png`}
+	/>
+	<meta property="og:type" content="website" />
+
+	<!-- Twitter Tags -->
+	<meta name="twitter:title" content="shornabho.com" />
+	<meta property="twitter:description" content="Your friendly neighbourhood developer" />
+	<meta property="twitter:image" content={`${$page.url.origin}/favicon.png`} />
 </svelte:head>
 
 <Navbar />

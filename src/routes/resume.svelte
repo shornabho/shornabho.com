@@ -1,6 +1,5 @@
 <script>
 	import PageHeader from '../components/common/PageHeader.svelte';
-	import { onMount } from 'svelte';
 	import PdfViewer from '../components/common/PdfViewer.svelte';
 </script>
 
