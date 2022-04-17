@@ -7,6 +7,7 @@
 
 	import Heading from '../../markdown/renderers/Heading.svelte';
 	import List from '../../markdown/renderers/List.svelte';
+	import { readingTime } from '../../utils';
 
 	export let project: Project = null;
 	export let blogpost: Blogpost = null;
@@ -119,7 +120,11 @@ mkdir swarnava
 						year: 'numeric'
 					}).format(blogpost.createdAt)} •
 				{/if}
-				2 min read
+				{#if project && project.fullContent}
+					{readingTime(project.fullContent)}
+				{:else if blogpost && blogpost.fullContent}
+					{readingTime(blogpost.fullContent)}
+				{/if}
 			</p>
 			<div class="tags">
 				{#if project && project.tags}

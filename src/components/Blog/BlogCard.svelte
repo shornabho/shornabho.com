@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Blogpost } from '../../models/Blogpost';
 	import Tag from '../common/Tag.svelte';
+	import { readingTime } from '../../utils';
 
 	export let blogpost: Blogpost;
 </script>
@@ -26,7 +27,7 @@
 				}).format(blogpost.createdAt)}
 			</div>
 
-			<div class="blog-card-footer-right">2 min read</div>
+			<div class="blog-card-footer-right">{readingTime(blogpost.fullContent)}</div>
 		</div>
 	</article>
 </a>
