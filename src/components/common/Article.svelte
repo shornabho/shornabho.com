@@ -9,6 +9,8 @@
 	import List from '../../markdown/renderers/List.svelte';
 	import Code from '../../markdown/renderers/Code.svelte';
 	import Paragraph from '../../markdown/renderers/Paragraph.svelte';
+	import ListItem from '../../markdown/renderers/ListItem.svelte';
+	import Image from '../../markdown/renderers/Image.svelte';
 
 	import { readingTime } from '../../utils';
 
@@ -65,8 +67,10 @@ mkdir swarnava
 	const renderers = {
 		heading: Heading,
 		list: List,
+		listitem: ListItem,
 		code: Code,
-		paragraph: Paragraph
+		paragraph: Paragraph,
+		image: Image
 	};
 
 	let breadcrumbs: string[] = $page.url.pathname.slice(1).split('/');
@@ -207,7 +211,7 @@ mkdir swarnava
 	article .title {
 		color: var(--text-color-primary);
 		font-weight: 400;
-		font-size: 1.3rem;
+		font-size: 2rem;
 		margin: 2rem 0 0.75rem;
 	}
 
@@ -241,7 +245,7 @@ mkdir swarnava
 
 	article .article-body {
 		margin: 2rem 1rem 1rem;
-		color: var(--text-color-secondary);
+		color: var(--text-color-accent);
 		font-size: 0.75rem;
 		font-weight: 300;
 	}
