@@ -9,6 +9,8 @@ export const getAllBlogposts = async (): Promise<Blogpost[]> => {
 		.select('*')
 		.order('createdAt', { ascending: false });
 
+	if (error) throw error;
+
 	blogposts = blogposts.map((blogpost) => {
 		return {
 			...blogpost,
@@ -16,13 +18,23 @@ export const getAllBlogposts = async (): Promise<Blogpost[]> => {
 		};
 	});
 
-	if (error) throw error;
-	else return blogposts;
+	return blogposts;
 };
 
-export const getBlogpost = async (slug: string): Promise<Blogpost> => {
-	let { data: blogpost, error } = await db.from('blogposts').select('*').filter('slug', 'eq', slug);
+export const getBlogpost = async (slug: string): Promise<Blogpost[]> => {
+	let { data: blogposts, error } = await db
+		.from('blogposts')
+		.select('*')
+		.filter('slug', 'eq', slug);
 
 	if (error) throw error;
-	else return { ...blogpost.at(0), createdAt: new Date(blogpost.at(0).createdAt) };
+
+	blogposts = blogposts.map((blogpost) => {
+		return {
+			...blogpost,
+			createdAt: new Date(blogpost.createdAt)
+		};
+	});
+
+	return blogposts;
 };

@@ -1,12 +1,12 @@
 <script context="module" lang="ts">
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load({ params, fetch, session, stuff }) {
-		const project: Project = await getProject(params.slug);
+		const projects: Project[] = await getProject(params.slug);
 
-		if (project) {
+		if (projects.length) {
 			return {
 				props: {
-					project
+					project: projects[0]
 				}
 			};
 		} else {

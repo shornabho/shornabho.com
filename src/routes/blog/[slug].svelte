@@ -1,12 +1,12 @@
 <script context="module" lang="ts">
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load({ params, fetch, session, stuff }) {
-		const blogpost: Blogpost = await getBlogpost(params.slug);
+		const blogposts: Blogpost[] = await getBlogpost(params.slug);
 
-		if (blogpost) {
+		if (blogposts.length) {
 			return {
 				props: {
-					blogpost
+					blogpost: blogposts[0]
 				}
 			};
 		} else {

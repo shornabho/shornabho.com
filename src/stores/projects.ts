@@ -32,9 +32,28 @@ export const getAllProjects = async (): Promise<Project[]> => {
 	return projects;
 };
 
-export const getProject = async (slug: string): Promise<Project> => {
+export const getProject = async (slug: string): Promise<Project[]> => {
 	let { data: projects, error } = await db.from('projects').select('*').filter('slug', 'eq', slug);
 
 	if (error) throw error;
-	else return projects.at(0);
+
+	if (projects) {
+		projects = projects.map((project) => {
+			project = {
+				...project,
+				urls: {
+					git: project.gitUrl,
+					web: project.webUrl,
+					docs: project.docsUrl
+				}
+			};
+			delete project.gitUrl;
+			delete project.webUrl;
+			delete project.docsUrl;
+
+			return project;
+		});
+	}
+
+	return projects;
 };
