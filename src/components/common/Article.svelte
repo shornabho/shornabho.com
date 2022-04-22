@@ -11,6 +11,7 @@
 	import Paragraph from '../../markdown/renderers/Paragraph.svelte';
 	import ListItem from '../../markdown/renderers/ListItem.svelte';
 	import Image from '../../markdown/renderers/Image.svelte';
+	import Blockquote from '../../markdown/renderers/Blockquote.svelte';
 
 	import { readingTime } from '../../utils';
 
@@ -65,6 +66,7 @@ mkdir swarnava
 `;
 
 	const renderers = {
+		blockquote: Blockquote,
 		heading: Heading,
 		list: List,
 		listitem: ListItem,

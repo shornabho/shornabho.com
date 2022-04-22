@@ -53,7 +53,7 @@
 		--bg-color-6: #14243e;
 		--bg-secondary: #cccccc40;
 		--text-color-primary: #cccccc;
-		--text-color-accent: #a5a4a4;
+		--text-color-accent: #aaa7a7;
 		--text-color-secondary: #707885;
 		--color-primary-50-percent: #f7c62680;
 		--color-primary-25-percent: #f7c62640;

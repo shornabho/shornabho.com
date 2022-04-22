@@ -35,23 +35,25 @@
 	}
 
 	h1 {
-		font-size: 1.7rem;
+		font-size: 1.9rem;
 		font-weight: 500;
 	}
 	h2 {
-		font-size: 1.5rem;
+		font-size: 1.7rem;
 	}
 	h3 {
-		font-size: 1.3rem;
+		font-size: 1.5rem;
 	}
 	h4 {
-		font-size: 1.1rem;
+		font-size: 1.3rem;
 		font-weight: 500;
 	}
 	h5 {
-		font-size: 1rem;
+		font-size: 1.1rem;
+		font-weight: 500;
 	}
 	h6 {
 		font-size: 1rem;
+		font-weight: 500;
 	}
 </style>
