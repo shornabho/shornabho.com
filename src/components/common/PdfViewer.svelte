@@ -1,6 +1,6 @@
 <object
 	title="Swarnava Ghosh - Resume"
-	data="/pdf/Swarnava_Ghosh_Resume.pdf#view=fit"
+	data="https://drive.google.com/uc?id=1SkeBCytzjy-x1n3md5rHW5_Ax6s_QN-e#view=fit"
 	type="application/pdf"
 	frameborder="0"
 />
