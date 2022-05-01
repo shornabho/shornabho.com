@@ -7,7 +7,7 @@
 
 <style>
 	object {
-		height: 100vh;
+		height: 140vh;
 		width: 100%;
 	}
 
