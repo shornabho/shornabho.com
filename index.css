@@ -338,19 +338,29 @@ footer {
 
 /* Add Animation */
 .modal-content, #caption {
-    -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.3s;
+    /* -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.5s;
     animation-name: zoom;
-    animation-duration: 0.3s;
+    animation-duration: 0.5s; */
+    
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in forwards;
+    
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+
 }
 
 @-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)}
+    from {-webkit-transform:scale(0.75)}
     to {-webkit-transform:scale(1)}
 }
 
 @keyframes zoom {
-    from {transform:scale(0)}
+    from {transform:scale(0.75)}
     to {transform:scale(1)}
 }
 
