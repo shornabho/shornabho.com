@@ -66,7 +66,7 @@
         <section>
             <br>
             <h3>Primary Tech Stack</h3>
-            <p>Python, Go, REST, PostgreSQL, Redis, Javascript, React.js, Nuxt.js, AWS, GCP.</p>
+            <p>Python, Go, PostgreSQL, Apache Parquet, React.js, AWS, GCP.</p>
             <br>
         </section>
         <section>
@@ -79,20 +79,29 @@
                     <p class="job-duration">2024 - Present</p>
                 </div>
                 <ul class="job-work-items">
-                    <li>Currently leading the technology team of the firm with 6 engineers in building investment
-                        infrastructure, including trading APIs processing more than 10,000 orders per day, a time series
-                        data lake spanning over 170M records per week, and a plethora of tools built on top of this
-                        data.
+                    <li>
+                        Reengineered a core Go price streaming service processing ~2,000 ticks/sec, reducing resource
+                        costs by 80%, supporting ~3x the load with added multi-sink fanout. (Go, Redis, PostgreSQL,
+                        MQTT).
                     </li>
-                    <li>Individually built a broker service to interface with upstream broker APIs, serving real-time
-                        orders and
-                        positions down to trading models with a traffic of ~ 135k requests per day. Used Go, Redis,
-                        REST.
+                    <li>
+                        Individually designed and deployed a broker service supporting 135k daily live requests (Go,
+                        Redis).
                     </li>
-                    <li>Responsible for strategic resource planning, hiring, and management of junior engineers and
-                        interns,
-                        setting up first principles, task planning, team morale, ensuring efficient use of time in a
-                        lean team.
+                    <li>
+                        Built and scaled investment infrastructure handling 10,000+ orders/day, architecting trading
+                        APIs and
+                        a time series data lake ingesting 170M records/week.
+                    </li>
+                    <li>
+                        Led a high-ownership team of 5; set engineering principles, mentored hires, and optimized
+                        delivery in
+                        a lean, fast-paced environment.
+                    </li>
+                    <li>
+                        Collaborated with stakeholders in investment research, finance, sales, and compliance,
+                        translating
+                        business needs into robust, reliable software solutions.
                     </li>
                 </ul>
             </div>
@@ -104,25 +113,35 @@
                     <p class="job-duration">2022 - 2024</p>
                 </div>
                 <ul class="job-work-items">
-                    <li>Built the core fullstack monitoring and financial risk-assessment engine in a 2 member team,
-                        backed
-                        by data pipelines that operate on approximately 200k rows of daily data inflow. Used Python, Go,
-                        PostgreSQL, TimescaleDB, React, AWS - EC2, S3, Lambda, SigNoz.</li>
-                    <li>Built the first version of a Python library to backtest trading algorithms on ~ 5 TB of stock
-                        market data.
-                        Used Python, PostgreSQL, AWS - S3, EC2, Apache Parquet.</li>
-                    <li>Contributed to ETL pipeline on the terabyte scale stock market data received from external
-                        vendors,
-                        wrote preliminary data quality checks and automated ingestion pipelines for daily data inflow of
-                        approximately 150 MB. Used AWS S3, ECS, Apache Spark, Python Pandas, Apache Parquet.</li>
-                    <li>Encouraging adoption, discovering, and self-hosting open-source tools: ERPNext (for ERP & CRM),
-                        Listmonk (for newsletters), and others, saving thousands of dollars otherwise spent on paid
-                        solutions.</li>
-                    <li>Redesigned and rebuilt the company website, without a marketing team, grossing nearly 7k+
-                        monthly
-                        visits — a +10% MoM and a +19.5% YoY organic growth.</li>
-                    <li>Responsible for hiring and managing interns, conducting requirements gathering with stakeholders
-                        and translating financial jargon to technical requirements, periodic enterprise security audits.
+                    <li>
+                        Developed the core monitoring and risk assessment engine in a small team, driving high-accuracy
+                        analytics for portfolio management; engineered data pipelines handling 200k+ daily records
+                        (Python, Go, Typescript, React.js, PostgreSQL, TimescaleDB, AWS, OpenTelemetry, SigNoz).
+                    </li>
+                    <li>
+                        Built the Python-based backtesting infrastructure for derivatives trading strategies using 5TB+
+                        of
+                        market data, accelerating investment research cycle; deployed on AWS using S3, EC2, and Parquet.
+                    </li>
+                    <li>Contributed to ETL pipelines for ingesting and validating terabyte-scale stock market data,
+                        automating
+                        daily workflows, and improving data quality (AWS S3, ECS, Pandas, Polars, Spark).
+                    </li>
+                    <li>
+                        Drove the cloud migration across 50+ VMs, 20+ buckets, and 15+ applications from GCP to AWS.
+                    </li>
+                    <li>
+                        Drove open-source adoption; led initiatives to self-host ERPNext, Listmonk, Umami, RustDesk, and
+                        many more, saving thousands of dollars annually on third-party tools.
+                    </li>
+                    <li>
+                        Redesigned, built, and maintained the company website as a sole developer, growing organic site
+                        traffic to 7,000+ visits/month and increasing conversions by 19.5% YoY.
+                    </li>
+                    <li>
+                        Led intern hiring, directly translated complex financial requirements into technical
+                        deliverables, and
+                        instituted regular enterprise security audits.
                     </li>
                 </ul>
             </div>
@@ -134,7 +153,8 @@
                     <p class="job-duration">Dec 2021 - May 2022</p>
                 </div>
                 <ul class="job-work-items">
-                    <li>Refactored an unmaintainable major module having 13k+ lines down to 1.3k lines of modular code.
+                    <li>
+                        Refactored an unmaintainable major module having 13k+ lines down to 1.3k lines of modular code.
                     </li>
                 </ul>
             </div>
@@ -146,13 +166,19 @@
                     <p class="job-duration">Sep 2019 - Sep 2021</p>
                 </div>
                 <ul class="job-work-items">
-                    <li>Architected the core data pipeline for the MVP for a European AI start-up. Used Python,
-                        Parquet.</li>
-                    <li>Built a distributed job scheduler for on-demand 3D rendering for a global luxury perfume
+                    <li>
+                        Architected the core data pipeline for the MVP for a European AI start-up. Used Python,
+                        Parquet.
+                    </li>
+                    <li>
+                        Built a distributed job scheduler for on-demand 3D rendering for a global luxury perfume
                         brand,
-                        running reliably in production for 3+ years. Used Python FastAPI, Celery, Redis.</li>
-                    <li>Designed, built and deployed 5 LAMP stack and 2 WordPress websites. Requirements gathering,
-                        project planning, client relations.</li>
+                        running reliably in production for 3+ years. Used Python FastAPI, Celery, Redis.
+                    </li>
+                    <li>
+                        Designed, built and deployed 5 LAMP stack and 2 WordPress websites. Requirements gathering,
+                        project planning, client relations.
+                    </li>
                 </ul>
             </div>
         </section>
@@ -164,7 +190,9 @@
                 <a href="https://github.com/shornabho" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://instagram.com/shornabho" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
-            <p class="footer-copyright">Swarnava Ghosh &copy; 2020 - <script>document.write(new Date().getFullYear())</script></p>
+            <p class="footer-copyright">Swarnava Ghosh &copy; 2020 -
+                <script>document.write(new Date().getFullYear())</script>
+            </p>
         </div>
     </footer>
 </body>
