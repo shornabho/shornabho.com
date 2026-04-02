@@ -66,48 +66,53 @@
         <section>
             <br>
             <h3>Primary Tech Stack</h3>
-            <p>Python, Go, PostgreSQL, Apache Parquet, React.js, AWS, GCP.</p>
+            <p>Go, Python, PostgreSQL, Redis, Apache Parquet, JavaScript, React.js, Nuxt.js, AWS, GCP, OpenTelemetry.</p>
             <br>
         </section>
         <section>
             <h3>Work Experience</h3>
             <br />
             <div class="job">
-                <h4 class="job-company">True Beacon</h4>
+                <h4 class="job-company"><a href="https://truebeacon.com" target="_blank" rel="noopener noreferrer">True Beacon</a></h4>
                 <div class="job-meta">
                     <p class="job-title">Senior Software Engineer</p>
                     <p class="job-duration">April 2024 - Present</p>
                 </div>
                 <ul class="job-work-items">
                     <li>
+                        Led a high-ownership team of 6; set engineering principles, hired and mentored mid-senior
+                        engineers, reviewed architecture, code quality, owned service reliability, and optimised
+                        delivery across the full SDLC. Collaborated with stakeholders in investment research, finance,
+                        sales and compliance.
+                    </li>
+                    <li>
                         Built the core Go price streaming service processing ~4,000 ticks/sec, reducing resource
-                        costs by 80%, supporting ~3x the load with added multi-sink fanout. (Go, Redis, PostgreSQL,
-                        MQTT).
+                        costs by 80%, supporting ~3x the load with added sub-millisecond multi-sink fanout, sharded
+                        stream and batch processing, backpressure handling and distributed metrics tracing.
+                        (Go, Redis, PostgreSQL, MQTT).
                     </li>
                     <li>
-                        Individually designed and deployed a broker service supporting 135k daily live requests (Go,
-                        Redis).
+                        Designed and deployed a scalable, highly available, rate-limited REST API broker service
+                        supporting 135k daily live requests (Go, Redis, OpenTelemetry, Signoz).
                     </li>
                     <li>
-                        Built and scaled investment infrastructure handling 10,000+ orders/day, architecting trading
-                        APIs and
-                        a time series data lake ingesting 170M records/week. (Python, PostgreSQL, Prefect).
+                        Architected and scaled multi-broker trading infrastructure executing 10,000+ orders/day with
+                        risk alerting and a time series data lake ingesting 170M records/week.
+                        (Python, PostgreSQL, Prefect).
                     </li>
                     <li>
-                        Led a high-ownership team of 6; set engineering principles, mentored hires, and optimized
-                        delivery in
-                        a lean, fast-paced environment.
+                        Drove AWS cost optimization, steadily saving $2,500 USD monthly (~25% reduction).
                     </li>
                     <li>
-                        Collaborated with stakeholders in investment research, finance, sales, and compliance,
-                        translating
-                        business needs into robust, reliable software solutions.
+                        Operated as interim CISO; led VAPT, security hardening, SIEM (Wazuh) &amp; VPN adoption
+                        (Pritunl, Netbird), and regulatory compliance (SEBI data residency) across cloud and
+                        enterprise infrastructure.
                     </li>
                 </ul>
             </div>
             <br />
             <div class="job">
-                <h4 class="job-company">True Beacon</h4>
+                <h4 class="job-company"><a href="https://truebeacon.com" target="_blank" rel="noopener noreferrer">True Beacon</a></h4>
                 <div class="job-meta">
                     <p class="job-title">Full Stack Engineer</p>
                     <p class="job-duration">June 2022 - April 2024</p>
@@ -119,13 +124,10 @@
                         (Python, Go, Typescript, React.js, PostgreSQL, TimescaleDB, AWS, OpenTelemetry, Superset).
                     </li>
                     <li>
-                        Built the Python-based backtesting infrastructure for derivatives trading strategies using 5TB+
-                        of
-                        market data, accelerating investment research cycle; deployed on AWS using S3, EC2, and Parquet.
-                    </li>
-                    <li>Contributed to ETL pipelines for ingesting and validating terabyte-scale stock market data,
-                        automating
-                        daily workflows, and improving data quality (AWS S3, ECS, Pandas, Polars, Spark).
+                        Contributed to ETL pipelines for ingesting, aggregating and validating 5TB+ of stock market
+                        data, automating daily workflows, and improving data quality (AWS S3, ECS, Pandas, Polars,
+                        Parquet). Built a well-tested backtesting system on top of the data to optimise research
+                        velocity.
                     </li>
                     <li>
                         Drove the cloud migration across 50+ VMs, 20+ buckets, and 15+ applications from GCP to AWS.
@@ -147,7 +149,7 @@
             </div>
             <br />
             <div class="job">
-                <h4 class="job-company">Maistering B.V.</h4>
+                <h4 class="job-company"><a href="https://www.mastersustainability.today" target="_blank" rel="noopener noreferrer">Maistering B.V.</a></h4>
                 <div class="job-meta">
                     <p class="job-title">Full Stack Intern</p>
                     <p class="job-duration">Dec 2021 - May 2022</p>
