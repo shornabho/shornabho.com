@@ -316,17 +316,22 @@ footer {
     top: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height on supporting browsers
+                       so the modal matches the actually-visible area on
+                       mobile (accounts for URL bar / toolbar). */
     overflow: auto;
     background-color: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
 }
 
 /* Modal Content */
 .modal-content {
-    margin: auto;
     display: block;
     width: 80%;
     max-width: 1200px;
-    height: 80%;
+    max-height: 80vh;
+    max-height: 80dvh;
     object-fit: contain;
 }
 
@@ -371,19 +376,60 @@ footer {
 /* The Close Button */
 .close {
     position: absolute;
-    top: 15px;
-    right: 35px;
+    top: 20px;
+    right: 30px;
     color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close svg {
+    width: 32px;
+    height: 32px;
 }
 
 .close:hover,
 .close:focus {
     color: #bbb;
     text-decoration: none;
+}
+
+/* Modal navigation arrows */
+.modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f1f1f1;
     cursor: pointer;
+    padding: 16px 20px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: color 0.3s;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-arrow svg {
+    width: 36px;
+    height: 36px;
+}
+
+.modal-arrow:hover {
+    color: #bbb;
+}
+
+.modal-arrow-left {
+    left: 25px;
+}
+
+.modal-arrow-right {
+    right: 25px;
 }
 
 /* ========================================
@@ -506,14 +552,35 @@ footer {
     /* Modal */
     .modal-content {
         width: 95%;
-        height: auto;
         max-height: 90vh;
+        max-height: 90dvh;
     }
 
     .close {
-        top: 10px;
-        right: 20px;
-        font-size: 35px;
+        top: 12px;
+        right: 15px;
+    }
+
+    .close svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .modal-arrow {
+        padding: 12px 14px;
+    }
+
+    .modal-arrow svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .modal-arrow-left {
+        left: 8px;
+    }
+
+    .modal-arrow-right {
+        right: 8px;
     }
 }
 
@@ -623,9 +690,30 @@ footer {
     }
 
     .close {
-        top: 5px;
-        right: 15px;
-        font-size: 30px;
+        top: 8px;
+        right: 10px;
+    }
+
+    .close svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .modal-arrow {
+        padding: 10px 10px;
+    }
+
+    .modal-arrow svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .modal-arrow-left {
+        left: 2px;
+    }
+
+    .modal-arrow-right {
+        right: 2px;
     }
 }
 

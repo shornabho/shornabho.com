@@ -66,31 +66,31 @@
         <p class="bio-text">A collection of photographs I have made over the years.</p>
         <h3 class="section-header">Street</h3>
         <div class="photo-gallery">
-            <div class="photo" onclick="openModal('photo-gallery/street/2.jpeg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/street/2.jpeg" alt="">
                 <p class="photo-caption">Kolkata, India</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/street/1.jpg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/street/1.jpg" alt="">
                 <p class="photo-caption">Kolkata, India</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/street/3.jpg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/street/3.jpg" alt="">
                 <p class="photo-caption">Delhi, India</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/street/4.jpeg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/street/4.jpeg" alt="">
                 <p class="photo-caption">Kolkata, India</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/street/5.jpeg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/street/5.jpeg" alt="">
                 <p class="photo-caption">Kolkata, India</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/street/6.jpeg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/street/6.jpeg" alt="">
                 <p class="photo-caption">Varkala, India</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/street/7.jpeg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/street/7.jpeg" alt="">
                 <p class="photo-caption">Varkala, India</p>
             </div>
@@ -100,44 +100,104 @@
         <br>
         <h3 class="section-header">Travel</h3>
         <div class="photo-gallery">
-            <div class="photo" onclick="openModal('photo-gallery/travel/1.jpg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/travel/1.jpg" alt="">
                 <p class="photo-caption">Travel Photo 1</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/travel/2.jpg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/travel/2.jpg" alt="">
                 <p class="photo-caption">Travel Photo 2</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/travel/3.jpg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/travel/3.jpg" alt="">
                 <p class="photo-caption">Travel Photo 3</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/travel/4.jpg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/travel/4.jpg" alt="">
                 <p class="photo-caption">Travel Photo 4</p>
             </div>
-            <div class="photo" onclick="openModal('photo-gallery/travel/5.jpg')">
+            <div class="photo" onclick="openModal(this)">
                 <img src="./static/images/photo-gallery/travel/5.jpg" alt="">
                 <p class="photo-caption">Travel Photo 5</p>
             </div>
         </div>
 
         <div id="myModal" class="modal">
-            <span class="close">&times;</span>
+            <span class="close" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </span>
+            <span class="modal-arrow modal-arrow-left" onclick="prevPhoto()" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </span>
             <img class="modal-content" id="img01">
+            <span class="modal-arrow modal-arrow-right" onclick="nextPhoto()" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
         </div>
         <script>
             const modal = document.getElementById("myModal");
-            const modalImg = document.getElementById("img01");
             const closeBtn = document.getElementsByClassName("close")[0];
+            const rightArrowEl = modal.querySelector('.modal-arrow-right');
 
-            function openModal(imgName) {
-                modalImg.src = "./static/images/" + imgName;
+            let currentGalleryImgs = [];
+            let currentIndex = 0;
+
+            function showCurrent() {
+                // Remove any existing modal image to force a clean repaint —
+                // prevents stale pixels from the previous photo lingering on mobile.
+                const oldImg = document.getElementById('img01');
+                if (oldImg) oldImg.remove();
+
+                const newImg = document.createElement('img');
+                newImg.className = 'modal-content';
+                newImg.id = 'img01';
+                newImg.src = currentGalleryImgs[currentIndex].src;
+                modal.insertBefore(newImg, rightArrowEl);
+            }
+
+            function lockBackgroundScroll() {
+                // Compensate for the scrollbar disappearing on desktop so the
+                // page doesn't visually jump when overflow is hidden.
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                if (scrollbarWidth > 0) {
+                    document.body.style.paddingRight = scrollbarWidth + 'px';
+                }
+                document.body.style.overflow = 'hidden';
+            }
+
+            function unlockBackgroundScroll() {
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+            }
+
+            function openModal(photoEl) {
+                const gallery = photoEl.closest('.photo-gallery');
+                currentGalleryImgs = Array.from(gallery.querySelectorAll('.photo img'));
+                currentIndex = currentGalleryImgs.indexOf(photoEl.querySelector('img'));
+                showCurrent();
                 modal.style.display = "flex";
+                lockBackgroundScroll();
             }
 
             function closeModal() {
                 modal.style.display = "none";
+                unlockBackgroundScroll();
+                // Drop the image from the DOM entirely when closing, so the next
+                // open starts clean.
+                const oldImg = document.getElementById('img01');
+                if (oldImg) oldImg.remove();
+            }
+
+            function prevPhoto() {
+                if (!currentGalleryImgs.length) return;
+                currentIndex = (currentIndex - 1 + currentGalleryImgs.length) % currentGalleryImgs.length;
+                showCurrent();
+            }
+
+            function nextPhoto() {
+                if (!currentGalleryImgs.length) return;
+                currentIndex = (currentIndex + 1) % currentGalleryImgs.length;
+                showCurrent();
             }
 
             // Close modal when clicking the close button
@@ -150,12 +210,57 @@
                 }
             }
 
-            // Close modal with Escape key for better UX
+            // Keyboard navigation: Escape to close, arrows to browse
             document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape' && modal.style.display === 'flex') {
+                if (modal.style.display !== 'flex') return;
+                if (event.key === 'Escape') {
                     closeModal();
+                } else if (event.key === 'ArrowLeft') {
+                    prevPhoto();
+                } else if (event.key === 'ArrowRight') {
+                    nextPhoto();
                 }
             });
+
+            // Touch/swipe navigation for mobile. Listeners are passive so
+            // they don't interfere with native vertical scroll or pinch-zoom.
+            const SWIPE_THRESHOLD = 50; // px — minimum horizontal travel to count
+            let touchStartX = null;
+            let touchStartY = null;
+
+            modal.addEventListener('touchstart', function(event) {
+                // Ignore multi-touch gestures (e.g. pinch-zoom)
+                if (event.touches.length !== 1) {
+                    touchStartX = null;
+                    return;
+                }
+                touchStartX = event.touches[0].clientX;
+                touchStartY = event.touches[0].clientY;
+            }, { passive: true });
+
+            modal.addEventListener('touchend', function(event) {
+                if (touchStartX === null) return;
+                if (modal.style.display !== 'flex') return;
+                const touch = event.changedTouches[0];
+                const deltaX = touch.clientX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+                touchStartX = null;
+                touchStartY = null;
+                // Direction lock: ignore mostly-vertical movement so the user
+                // can still scroll/tap without triggering a swipe.
+                if (Math.abs(deltaX) < Math.abs(deltaY)) return;
+                if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+                if (deltaX > 0) {
+                    prevPhoto();
+                } else {
+                    nextPhoto();
+                }
+            }, { passive: true });
+
+            modal.addEventListener('touchcancel', function() {
+                touchStartX = null;
+                touchStartY = null;
+            }, { passive: true });
         </script>
 
     </main>
