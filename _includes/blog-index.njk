@@ -1,0 +1,33 @@
+---
+layout: base.njk
+---
+<section class="blog">
+    <h2 class="subtitle">{{ heading or "Writing" }}</h2>
+    {% if intro %}<p class="blog-intro">{{ intro }}</p>{% endif %}
+    {% if tag %}
+        {% set list = collections[tag] | reverse %}
+    {% else %}
+        {% set list = collections.posts | reverse %}
+    {% endif %}
+    {% if list.length %}
+    <ul class="post-list">
+        {% for post in list %}
+        <li class="post-list-item">
+            <a href="{{ post.url }}" class="post-list-link">
+                <span class="post-list-title">{{ post.data.title }}</span>
+                <time class="post-list-date" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+            </a>
+            {% if post.data.description %}<p class="post-list-desc">{{ post.data.description }}</p>{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No posts yet.</p>
+    {% endif %}
+    {% if showTags and collections.tagList.length %}
+    <p class="blog-taglist">
+        Tags:
+        {% for tag in collections.tagList %}<a href="/blog/tag/{{ tag }}/" class="post-tag">#{{ tag }}</a>{% if not loop.last %} {% endif %}{% endfor %}
+    </p>
+    {% endif %}
+</section>

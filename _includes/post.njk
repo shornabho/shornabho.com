@@ -1,0 +1,26 @@
+---
+layout: base.njk
+ogType: article
+---
+<article class="post">
+    <header class="post-header">
+        <h2 class="post-title">{{ title }}</h2>
+        <p class="post-meta">
+            <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+            {% if tags %}
+                {% set visibleTags = tags | reject("equalto", "posts") %}
+                {% if visibleTags.length %}
+                    <span class="post-tags">
+                        {% for tag in visibleTags %}<a href="/blog/tag/{{ tag }}/" class="post-tag">#{{ tag }}</a>{% if not loop.last %} {% endif %}{% endfor %}
+                    </span>
+                {% endif %}
+            {% endif %}
+        </p>
+    </header>
+    <div class="post-body">
+        {{ content | safe }}
+    </div>
+    <nav class="post-nav">
+        <a href="/blog">← All posts</a>
+    </nav>
+</article>

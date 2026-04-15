@@ -7,38 +7,35 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-G3PLZ5208L');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shelf - Swarnava Ghosh">
+    <meta name="description" content="{{ description or 'Swarnava Ghosh - Software Engineer and Hobbyist Photographer.' }}">
     <meta name="author" content="Swarnava Ghosh">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shornabho.com/shelf">
-    <meta property="og:title" content="Swarnava Ghosh - Shelf">
-    <meta property="og:description" content="Projects and writings.">
+    <meta property="og:type" content="{{ ogType or 'website' }}">
+    <meta property="og:url" content="https://shornabho.com{{ page.url }}">
+    <meta property="og:title" content="{{ title or 'Swarnava Ghosh' }}">
+    <meta property="og:description" content="{{ description or 'Software Engineer and Hobbyist Photographer.' }}">
     <meta property="og:image" content="https://shornabho.com/static/images/swarnava-ghosh.jpg">
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://shornabho.com/shelf">
-    <meta property="twitter:title" content="Swarnava Ghosh - Shelf">
-    <meta property="twitter:description" content="Projects and writings.">
+    <meta property="twitter:url" content="https://shornabho.com{{ page.url }}">
+    <meta property="twitter:title" content="{{ title or 'Swarnava Ghosh' }}">
+    <meta property="twitter:description" content="{{ description or 'Software Engineer and Hobbyist Photographer.' }}">
     <meta property="twitter:image" content="https://shornabho.com/static/images/swarnava-ghosh.jpg">
 
-    <title>Swarnava Ghosh - Shelf</title>
+    <title>{% if title %}{{ title }} — Swarnava Ghosh{% else %}Swarnava Ghosh{% endif %}</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="Swarnava Ghosh — Blog">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,8 +58,7 @@
         </nav>
     </header>
     <main>
-        <h2 class="subtitle">Shelf</h2>
-        <p class="bio-text">Coming soon!</p>
+        {{ content | safe }}
     </main>
     <footer>
         <div class="footer-content">

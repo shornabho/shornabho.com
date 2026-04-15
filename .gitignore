@@ -27,10 +27,11 @@ Thumbs.db
 *.log
 logs/
 
-# Build output (if you add build process later)
+# Build output
 dist/
 build/
 .cache/
+_site/
 
 # Temporary files
 *.tmp
