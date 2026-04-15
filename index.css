@@ -251,6 +251,14 @@ footer {
     left: -1rem;
 }
 
+.career-byline {
+    border-left: 2px solid #333;
+    padding: 0.5rem 0 0.5rem 1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: #444;
+}
+
 /* Photography */
 
 .photography .section-header {
